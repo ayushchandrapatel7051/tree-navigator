@@ -26,28 +26,55 @@ function getFileIcon(node: FileNode) {
     return <Folder className="w-8 h-8 text-primary" />;
   }
 
-  const mime = node.meta.mimeType || "";
+  // For files, check MIME type and file extension
+  const mime = node.meta.mimeType?.toLowerCase() || "";
+  const fileName = node.name.toLowerCase();
+  const extension = fileName.split('.').pop() || "";
   
-  if (mime.startsWith("image/")) {
+  // Images
+  if (mime.startsWith("image/") || ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp', 'bmp'].includes(extension)) {
     return <FileImage className="w-8 h-8 text-success" />;
   }
-  if (mime.startsWith("video/")) {
+  
+  // Videos
+  if (mime.startsWith("video/") || ['mp4', 'avi', 'mov', 'wmv', 'flv', 'mkv'].includes(extension)) {
     return <FileVideo className="w-8 h-8 text-warning" />;
   }
-  if (mime.includes("pdf")) {
+  
+  // PDFs
+  if (mime.includes("pdf") || extension === "pdf") {
     return <FileText className="w-8 h-8 text-destructive" />;
   }
-  if (mime.includes("text") || mime.includes("json") || mime.includes("xml")) {
+  
+  // Documents
+  if (mime.includes("word") || mime.includes("document") || ['doc', 'docx', 'odt', 'rtf'].includes(extension)) {
+    return <FileText className="w-8 h-8 text-primary" />;
+  }
+  
+  // Code/Text files
+  if (mime.includes("text") || mime.includes("json") || mime.includes("xml") || 
+      ['txt', 'md', 'json', 'xml', 'html', 'css', 'js', 'ts', 'tsx', 'jsx', 'py', 'java', 'cpp', 'c', 'h'].includes(extension)) {
     return <FileCode className="w-8 h-8 text-accent" />;
   }
-  if (mime.includes("spreadsheet") || mime.includes("csv")) {
+  
+  // Spreadsheets
+  if (mime.includes("spreadsheet") || mime.includes("csv") || ['csv', 'xls', 'xlsx', 'ods'].includes(extension)) {
     return <FileSpreadsheet className="w-8 h-8 text-success" />;
   }
-  if (mime.includes("zip") || mime.includes("rar") || mime.includes("tar")) {
+  
+  // Archives
+  if (mime.includes("zip") || mime.includes("rar") || mime.includes("tar") || 
+      ['zip', 'rar', 'tar', 'gz', '7z', 'bz2'].includes(extension)) {
     return <FileArchive className="w-8 h-8 text-muted-foreground" />;
   }
+  
+  // Executables
+  if (['exe', 'msi', 'dmg', 'app', 'deb', 'rpm'].includes(extension)) {
+    return <File className="w-8 h-8 text-warning" />;
+  }
 
-  return <File className="w-8 h-8 text-muted-foreground" />;
+  // Default file icon (NOT folder)
+  return <File className="w-8 h-8 text-foreground" />;
 }
 
 function formatFileSize(bytes?: number): string {
