@@ -3,6 +3,7 @@ import { useFileSystem } from "@/hooks/useFileSystem";
 import { useSelection } from "@/hooks/useSelection";
 import { FileNode } from "@/lib/fileSystem";
 import { TopBar } from "@/components/FileExplorer/TopBar";
+import { Breadcrumb } from "@/components/FileExplorer/Breadcrumb";
 import { FolderTree } from "@/components/FileExplorer/FolderTree";
 import { FileGrid } from "@/components/FileExplorer/FileGrid";
 import { PreviewPanel } from "@/components/FileExplorer/PreviewPanel";
@@ -246,6 +247,19 @@ const Index = () => {
           isDark={isDark}
           onThemeToggle={() => setIsDark(!isDark)}
         />
+
+        {/* Breadcrumb Navigation */}
+        {!searchQuery && (
+          <Breadcrumb
+            currentFolderId={currentFolderId}
+            rootId={rootId}
+            getNode={getNode}
+            onNavigate={(folderId) => {
+              setCurrentFolderId(folderId);
+              clearSelection();
+            }}
+          />
+        )}
 
         {/* Toolbar */}
         <div className="border-b border-border bg-surface px-4 py-2 flex items-center gap-2">
