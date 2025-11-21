@@ -1,73 +1,145 @@
-# Welcome to your Lovable project
+File Explorer Clone (N-ary Tree)
 
-## Project info
+A modern, desktop-style File Explorer built with React, using an N-ary tree data structure to manage folders and files.
+Features include dark/light mode, drag-and-drop, rename, delete, search, previews, and smooth UI animations.
 
-**URL**: https://lovable.dev/projects/7dd5b916-b297-44b2-8c5b-c77fbd0f4d16
+---------------------------------------
+FEATURES
+---------------------------------------
 
-## How can I edit this code?
+1. Folder Tree (N-ary)
+- Nested folder structure
+- Expand/collapse animations
+- Drag-and-drop to move files/folders
+- Auto-expand on hover
 
-There are several ways of editing your application.
+2. Main Content Area
+- Grid / List view toggle
+- File & folder cards with modern icons
+- Multi-select: Click, Ctrl/Cmd + Click, Shift + Range, Drag selection
 
-**Use Lovable**
+3. File & Folder Operations
+- Create new folders (auto-rename mode)
+- Rename (F2, context menu, or double click)
+- Delete with Undo (5 seconds)
+- Move items via drag-and-drop
+- Duplicate name detection
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/7dd5b916-b297-44b2-8c5b-c77fbd0f4d16) and start prompting.
+4. Search
+- Instant search in current directory
+- Highlights matching text
+- Does not modify tree structure
 
-Changes made via Lovable will be committed automatically to this repo.
+5. Preview Panel
+- Slide-in preview
+- Shows name, type, size, creation date, modified date
+- Supports text, markdown, and image previews
 
-**Use your preferred IDE**
+6. Dark & Light Mode
+- Toggle button
+- Animated transitions
+- Saves preference in localStorage
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+7. Context Menu
+- Open
+- Rename
+- Delete
+- Move To...
+- Copy Path
+- Properties
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+8. Keyboard Shortcuts
+Delete       → Delete/Backspace
+Rename       → F2
+Open         → Enter
+Select All   → Ctrl/Cmd + A
+Search       → Ctrl/Cmd + F
+Copy/Paste   → Ctrl/Cmd + C / Ctrl/Cmd + V
+Cancel       → Esc
 
-Follow these steps:
+---------------------------------------
+N-ARY DATA MODEL
+---------------------------------------
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+{
+  id: string,
+  name: string,
+  type: folder | file,
+  parentId: string | null,
+  children: string[],
+  meta: {
+    mimeType?: string,
+    size?: number,
+    createdAt: ISODate,
+    updatedAt: ISODate,
+    preview?: string
+  }
+}
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+---------------------------------------
+TECH STACK
+---------------------------------------
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
 - React
-- shadcn-ui
 - Tailwind CSS
+- Framer Motion
+- Context + Reducer for global tree state
+- LocalStorage persistence
 
-## How can I deploy this project?
+---------------------------------------
+PROJECT SETUP
+---------------------------------------
 
-Simply open [Lovable](https://lovable.dev/projects/7dd5b916-b297-44b2-8c5b-c77fbd0f4d16) and click on Share -> Publish.
+git clone https://github.com/your-username/file-explorer-nary
+cd file-explorer-nary
 
-## Can I connect a custom domain to my Lovable project?
+npm install
+npm run dev
 
-Yes, you can!
+App runs at:
+http://localhost:5173
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+---------------------------------------
+PROJECT STRUCTURE
+---------------------------------------
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+src/
+  components/
+  context/
+  theme/
+  utils/
+  App.jsx
+  main.jsx
+
+---------------------------------------
+MVP ACCEPTANCE CRITERIA
+---------------------------------------
+
+- Smooth expand/collapse in tree
+- Create enters rename mode
+- Rename updates UI + handles duplicates
+- Delete shows Undo
+- Move: drag-and-drop + Undo
+- Search filters instantly
+- Dark/light mode transitions smoothly
+- Context menu opens on right-click
+- Preview panel shows metadata
+- State persists across refreshes
+
+---------------------------------------
+ROADMAP (POST-MVP)
+---------------------------------------
+
+- File upload
+- Trash / Restore
+- Sorting (name/date/type)
+- Sharing & permissions
+- Tags & metadata
+- Cloud sync
+- Virtualized rendering for huge trees
+
+---------------------------------------
+LICENSE
+---------------------------------------
+
+MIT License
