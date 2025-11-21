@@ -1,6 +1,7 @@
 📁 Tree Navigator
 
-A minimal and modern File Explorer / Tree Navigation UI built with React + TypeScript + Vite. Organized using an N-ary tree structure, with clean components and a simple architecture.
+A minimal and modern File Explorer / Tree Navigation UI built with React + TypeScript + Vite.
+Organized using an N-ary tree structure, with clean components and a simple architecture.
 
 🚀 Features
 
@@ -14,7 +15,17 @@ Component-based architecture (components/, pages/, hooks/, lib/)
 
 Ready for expansion into a full file explorer
 
-📂 Project Structure src/ components/ hooks/ lib/ pages/ App.tsx App.css index.css main.tsx vite-env.d.ts
+📂 Project Structure
+src/
+  components/
+  hooks/
+  lib/
+  pages/
+  App.tsx
+  App.css
+  index.css
+  main.tsx
+  vite-env.d.ts
 
 🛠️ Tech Stack
 
@@ -26,10 +37,14 @@ Tailwind / CSS
 
 ShadCN (template)
 
-▶️ Run Locally npm install npm run dev
+▶️ Run Locally
+npm install
+npm run dev
+
 
 App runs at:
 
 http://localhost:5173
 
-📦 Build for Production npm run build
+📦 Build for Production
+npm run build
