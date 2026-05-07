@@ -48,3 +48,6 @@ http://localhost:5173
 
 📦 Build for Production
 npm run build
+
+
+This is an updated README file with more details.
